@@ -95,8 +95,18 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+li:hover,
+li a:hover {
 	color: #B1663C;
+}
+
+li a {
+	text-decoration: none;
+	color: #000000;
+}
+li img {
+	width: 20px;
+	height: 20px;
 }
 #introduction {
 	display: flex;
@@ -125,6 +135,35 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+
+.filter {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3em;
+	
+}
+
+.filter-cards {	font-family: 'Syne';
+font-style: normal;	
+font-weight: 700;	
+font-size: 16px;	
+line-height: 19px;	
+border: 1px solid #1D6154;
+border-radius: 60px;	
+text-align: center;
+padding: 10px;
+margin: 0 5px;	
+color: #1D6154;	
+cursor: default;
+}
+.filter-cards:hover {
+background: #1D6154;
+border: 1px solid #1D6154;
+border-radius: 60px;
+color: #FFFFFF;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

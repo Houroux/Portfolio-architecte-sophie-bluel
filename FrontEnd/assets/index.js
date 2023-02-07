@@ -1,6 +1,6 @@
 // Récupération des works depuis l'API
-const reponse = await fetch('http://localhost:5678/api/works/');
-const works = await reponse.json();
+const reponseWorks = await fetch('http://localhost:5678/api/works/');
+const works = await reponseWorks.json();
 console.log(works);
 
 
@@ -32,3 +32,59 @@ figure.appendChild(figcaption);
     };
 };
 genererWorks(works);
+
+
+
+
+//
+//
+//
+//
+//
+//
+//Est-il nécessaire de crée les boutons via JS avec l'API ou les catégories sont considérées comme figées?
+//
+//Faut-il que ce soit responsive < 400px?
+//
+//
+//
+
+// // Récupération des categories depuis l'API
+// const reponseCategories = await fetch('http://localhost:5678/api/categories/');
+// const categories = await reponseCategories.json();
+// console.log(categories);
+
+
+//Ajout fonction bouton tous
+const boutonTous = document.querySelector('.tous');
+boutonTous.addEventListener('click', () => {
+    console.log('tous');
+    genererWorks(works);
+});
+
+//Ajout fonction bouton objets
+const boutonObjets = document.querySelector('.objets');
+boutonObjets.addEventListener('click', () => {
+    const objets = works.filter(work => work.category.name === 'Objets');
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = '';
+    genererWorks(objets);
+});
+
+//Ajout fonction bouton appartements
+const boutonAppartements = document.querySelector('.appartements');
+boutonAppartements.addEventListener('click', () => {
+    const appartements = works.filter(work => work.category.name === 'Appartements');
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = '';
+    genererWorks(appartements);
+});
+
+//Ajout fonction bouton hotels & restaurants
+const boutonhotEtRestau = document.querySelector('.hotEtRestau');
+boutonhotEtRestau.addEventListener('click', () => {
+    const hotEtRestau = works.filter(work => work.category.name === 'Hotels & restaurants');
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = '';
+    genererWorks(hotEtRestau);
+});
