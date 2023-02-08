@@ -38,9 +38,9 @@ genererWorks(works);
 
 //
 //
+//Est-ce possible d'utiliser des librairies ?
 //
-//
-//
+//Vais-je devoir utiliser des librairies ?
 //
 //Est-il nécessaire de crée les boutons via JS avec l'API ou les catégories sont considérées comme figées?
 //

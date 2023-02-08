@@ -41,6 +41,7 @@ input {
 
 input[type="submit"] {
     height: 35px;
+    cursor: pointer;
 }
 .login-container a {
     text-decoration-line: underline;
