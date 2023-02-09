@@ -34,31 +34,19 @@ figure.appendChild(figcaption);
 genererWorks(works);
 
 
-
-
-//
-//
-//Est-ce possible d'utiliser des librairies ?
-//
-//Vais-je devoir utiliser des librairies ?
-//
-//Est-il nécessaire de crée les boutons via JS avec l'API ou les catégories sont considérées comme figées?
-//
-//Faut-il que ce soit responsive < 400px?
-//
-//
-//
-
-// // Récupération des categories depuis l'API
-// const reponseCategories = await fetch('http://localhost:5678/api/categories/');
-// const categories = await reponseCategories.json();
-// console.log(categories);
+// Est-il nécessaire de génerer les boutons catégorie via JS avec l'API ou les catégories sont considérées comme figées?
+// NON
+// 
+//  Faut-il que ce soit responsive < 400px?
+// NON
 
 
 //Ajout fonction bouton tous
 const boutonTous = document.querySelector('.tous');
 boutonTous.addEventListener('click', () => {
-    console.log('tous');
+    // console.log('tous');
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = '';
     genererWorks(works);
 });
 

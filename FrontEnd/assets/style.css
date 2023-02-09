@@ -53,6 +53,39 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+.mode-editeur-header {
+	height: 60px;
+	width: 100vw;
+	background-color: #000000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	color: white;
+}
+
+.mode-editeur-header button {
+	background: #FFFFFF;
+	border-radius: 60px;
+	height: 40px;
+	padding: 0 20px;
+	font-weight: 500;
+	font-size: 14px;	
+	font-family: 'Work Sans';
+	font-style: normal;
+	cursor: pointer;
+}
+
+.mode-editeur-header p {
+	font-weight: 400;
+	font-size: 16px;
+}
+
+
 header {
 	display: flex;
 	justify-content: space-between;
