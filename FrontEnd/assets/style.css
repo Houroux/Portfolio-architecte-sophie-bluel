@@ -66,6 +66,7 @@ body {
 	align-items: center;
 	gap: 10px;
 	color: white;
+	z-index: 1;
 }
 
 .mode-editeur-header button {
@@ -84,6 +85,163 @@ body {
 	font-weight: 400;
 	font-size: 16px;
 }
+
+
+
+.modale {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: none;
+
+	/* A CHANGER EN DISPLAY FLEX */
+
+	justify-content: center;
+	align-items: center;
+
+}
+
+.modale-container {
+	background-color: white;
+	border-radius: 10px;
+	width: 630px;
+	height: 730px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	position: sticky;
+}
+
+.edit-xmark-container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.fa-xmark{
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.modale h2 {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	color: #000000;
+	margin-top: 20px;
+}
+
+
+.edit-work-container {
+	margin: 45px auto;
+	width: 420px;
+	display : grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	align-self: stretch;
+}
+
+.edit-work {
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	
+}
+
+
+.edit-work p {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+
+.container-container-icons {
+	height: 0px;
+}
+
+.container-icons{
+	width: 19px;
+	height: 19px;
+	background: #000000;
+	border-radius: 2px;
+	position: relative;
+	display: inline-flex;
+}
+
+.container-cross {
+	top: -110px;
+	left: 40%;
+	cursor: grab;
+}
+
+.container-trash {
+	top: -110px;
+	left: 40%;
+	cursor: pointer;
+	}
+
+.fa-up-down-left-right, .fa-trash-can
+{
+	color: white;
+	margin: auto;
+}
+
+
+.edit-work img {
+	object-fit: contain;
+	width: 100%;
+}
+
+.edit-ligne {
+	width: 420px;
+	height: 1px;
+	background-color: #B3B3B3;
+	margin: 40px 0;
+	border-radius: 10px;
+}
+
+.modale-container button {
+	width: 237px;
+	height: 36px;
+	background: #1D6154;
+	border-radius: 60px;
+	border: none;
+	color: white;
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	cursor: pointer;	
+}
+
+
+.edit-supp { 
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: #D65353;
+	cursor:pointer;
+	margin: 25px 0;
+
+}
+
+
+
+
+
+
+
+
 
 
 header {
@@ -115,8 +273,31 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: #1D6154;
 }
+
+.bouton-switch-edit-mode {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+cursor: pointer;
+margin: 0 10px;
+padding: 5px 10px;
+}
+
+.bouton-switch-edit-mode i {
+	color: black;
+}
+
+.text-switch-edit-mode{
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+color: #000000;
+}
+
 nav ul {
 	display: flex;
 	align-items: center;
