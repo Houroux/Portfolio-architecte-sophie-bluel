@@ -170,10 +170,53 @@
 	
 		</div>
 		<div class="edit-ligne"></div>
-		<button>Ajouter une photo</button>
+		<button class="bouton-ajouter-photo">Ajouter une photo</button>
 		<p class="edit-supp">Supprimer la galerie</p>
 	</div>
+<div class="modale-ajout-photo-container">
+	<i class="fa-solid fa-arrow-left-long"></i>
+	 <div class="edit-xmark-container">
+		<i class="fa-solid fa-xmark bouton-fermer-modale"></i> 
+	</div>
+	<h2>Ajout photo</h2>
+	<form method="post">
+		<div class="container-upload-photo">
+			<i class="fa-regular fa-4x fa-image"></i>
+			<label for="photo" class="label-photo"><p>+ Ajouter photo</p></label>
+			<input type="file" name="photo" id="photo" accept=".jpg, .png">
+			<p class="description-upload">jpg, png : 4mo max</p>
+		</div>
+		
+		<div class="titre-upload">
+			<h3>Titre</h3>
+			<input type="text" name="titre" id="titre">
+		</div>
+
+
+		<div class="categorie-upload">
+			<h3>Catégorie</h3>
+
+			<select name="categorie" id="categorie">
+			<option valeur="objets">Objets</option>
+			<option valeur="appartements">Appartements</option>
+			<option valeur="hotEtRestau">Hôtels & restaurants</option>
+			</select>
+		</div>
+
+		<div class="edit-ligne"></div>
+
+
+		<button>Valider</button>
+
+  </form>
+
+</div>
+
 </div>																							
+
+
+
+
 
 <!-- FIN MODALE -->
 
