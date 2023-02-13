@@ -188,7 +188,7 @@ body {
 
 .container-trash {
 	top: -110px;
-	left: 40%;
+	left: 45%;
 	cursor: pointer;
 	}
 
@@ -292,6 +292,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 }
 
 #photo {

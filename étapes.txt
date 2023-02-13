@@ -1,0 +1,11 @@
+Ajouter photo à la modale OK
+
+
+
+Ajouter apercu photo quand upload
+
+Modifier la position des photos
+
+Supprimer des photos
+
+Bouton supprimer la galerie

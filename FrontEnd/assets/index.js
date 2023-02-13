@@ -1,7 +1,6 @@
 // Récupération des works depuis l'API
 const reponseWorks = await fetch('http://localhost:5678/api/works/');
 const works = await reponseWorks.json();
-console.log(works);
 
 
 // Ajout des works dans le DOM
