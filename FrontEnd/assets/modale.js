@@ -11,6 +11,8 @@ let boutonFermerModale = document.querySelector('.fa-xmark')
 // Ajout d'un event listener sur le bouton ouvrir modale
 boutonOuvrirModale.addEventListener('click', () => {
 modale.style.display = 'flex'
+document.querySelector('.modale-ajout-photo-container').style.display = 'none'
+document.querySelector('.modale-container').style.display = 'flex'
 })
 
 //Ajout d'un event listener sur le bouton fermer modale

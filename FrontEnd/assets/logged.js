@@ -14,9 +14,12 @@ const modeEditeurHeader = document.querySelector('.mode-editeur-header');
 
 if (localStorage.getItem('token')) {
     baliseLogin.innerHTML = 'logout';
+    document.querySelector('.bouton-switch-edit-mode').style.display = 'inline-flex';
 } else {
     baliseLogin.innerHTML = 'login';
+    document.querySelector('.bouton-switch-edit-mode').style.display = 'none';
 }
+
 
 
 
