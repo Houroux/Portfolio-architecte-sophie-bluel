@@ -89,6 +89,7 @@ function genererWorksModale(works){
         const divIconTrash = document.createElement('div');
         divIconTrash.classList.add('container-icons');
         divIconTrash.classList.add('container-trash');
+        divIconTrash.setAttribute('id', work.id);
         divIconsContainer.appendChild(divIconTrash);
 
         const iconTrash = document.createElement('i');
@@ -130,3 +131,22 @@ boutonAjouterPhoto.addEventListener('click', () => {
     document.querySelector('.modale-ajout-photo-container').style.display = 'none'
     document.querySelector('.modale-container').style.display = 'flex'
 })})
+
+
+//Ajout bouton supprimer
+const boutonSupprimer = document.querySelectorAll('.container-trash')
+for (const bouton of boutonSupprimer) {
+    bouton.addEventListener('click', () => {
+        const id = bouton.getAttribute('id')
+        fetch(`http://localhost:5678/api/works/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(console.log(response))
+        .catch(error => console.log(error))
+    })
+}
