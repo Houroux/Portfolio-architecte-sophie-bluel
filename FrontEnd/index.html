@@ -12,6 +12,7 @@
 	<script type="module" src="./assets/index.js"></script>
 	<script type="module" src="./assets/logged.js"></script>
 	<script type="module" src="./assets/modale.js"></script>
+	<script type="module" src="./assets/modale_upload.js"></script>
 	<script
 	src="https://kit.fontawesome.com/30b361f55b.js"
 	crossorigin="anonymous"
@@ -24,7 +25,6 @@
 		<p>Mode édition</p>
 		<button>publier les changements</button>
 	</div>
-
 
 <!--  DEBUT MODALE -->
 
@@ -47,40 +47,51 @@
 			<i class="fa-solid fa-xmark bouton-fermer-modale"></i> 
 		</div>
 		<h2>Ajout photo</h2>
-		<form method="post">
+		<form id="form-id" method="post">
 			<div class="container-upload-photo">
 				<i class="fa-regular fa-4x fa-image"></i>
-				<label for="photo" class="label-photo"><p>+ Ajouter photo</p></label>
-				<input type="file" name="photo" id="photo" accept=".jpg, .png">
+				<label for="image" class="label-photo"><p>+ Ajouter photo</p></label>
+				<input type="file" name="image" id="image" accept=".jpg, .png">
 				<p class="description-upload">jpg, png : 4mo max</p>
 			</div>
 			
 			<div class="titre-upload">
 				<h3>Titre</h3>
-				<input type="text" name="titre" id="titre">
+				<input type="text" name="title" id="title">
 			</div>
 
 
 			<div class="categorie-upload">
 				<h3>Catégorie</h3>
 
-				<select name="categorie" id="categorie">
-				<option valeur="objets">Objets</option>
-				<option valeur="appartements">Appartements</option>
-				<option valeur="hotEtRestau">Hôtels & restaurants</option>
+				<select name="category" id="category">
+					<option valeur="objets">Objets</option>
+					<option valeur="appartements">Appartements</option>
+					<option valeur="hotEtRestau">Hôtels & restaurants</option>
 				</select>
 			</div>
 
 			<div class="edit-ligne"></div>
 
 
-			<button>Valider</button>
+			<button type="submit" name="submit">Valider</button>
 
 		</form>
 
 	</div>
 
 </div>																							
+
+
+
+
+
+
+
+
+
+
+
 
 
 
