@@ -1,10 +1,10 @@
 // Récupération des works depuis l'API
-const reponseWorks = await fetch('http://localhost:5678/api/works/');
-const works = await reponseWorks.json();
+let reponseWorks = await fetch('http://localhost:5678/api/works/');
+let works = await reponseWorks.json();
 
 
 // Ajout des works dans le DOM
-function genererWorks(works){
+export function genererWorks(works){
     for (const work of works) {
         //Récupération de l'élément du DOM où on va ajouter les works
         const gallery = document.querySelector('.gallery');

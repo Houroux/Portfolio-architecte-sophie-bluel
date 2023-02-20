@@ -1,3 +1,6 @@
+import { genererWorks } from "./index.js";
+
+
 
 // Recuperation de l'element modale
 const modale = document.querySelector('.modale')
@@ -42,11 +45,11 @@ window.addEventListener('keydown', event => {
 
 
 // Récupération des works depuis l'API
-const reponseWorks = await fetch('http://localhost:5678/api/works/');
-const works = await reponseWorks.json();
+let reponseWorks = await fetch('http://localhost:5678/api/works/');
+let works = await reponseWorks.json();
 
 // Ajout des photos dans la modale
-function genererWorksModale(works){
+export function genererWorksModale(works){
     for (const work of works) {
         //Récupération de l'élément de la modale où on va ajouter les works
         const galleryModale = document.querySelector('.edit-work-container');
@@ -133,10 +136,10 @@ boutonAjouterPhoto.addEventListener('click', () => {
 })})
 
 
-//Ajout bouton supprimer
+//Ajout focntionnalite bouton supprimer
 const boutonSupprimer = document.querySelectorAll('.container-trash')
 for (const bouton of boutonSupprimer) {
-    bouton.addEventListener('click', () => {
+    bouton.addEventListener('click', async () => {
         const id = bouton.getAttribute('id')
         fetch(`http://localhost:5678/api/works/${id}`, {
             method: 'DELETE',
@@ -148,5 +151,35 @@ for (const bouton of boutonSupprimer) {
         .then(response => response.json())
         .then(console.log(response))
         .catch(error => console.log(error))
+
+        // Rechargement dynamique de la page
+        let reponseWorks = await fetch('http://localhost:5678/api/works/');
+        let works = await reponseWorks.json();       
+        genererWorks(works);
+        genererWorksModale(works);
+    
     })
 }
+
+
+//Ajout fonctionnalite bouton tout supprimer 
+ const boutonToutSupprimer = document.querySelector('.edit-supp')
+boutonToutSupprimer.addEventListener('click', async () => {
+    for (const work of works) {
+        let id = work.id
+        fetch(`http://localhost:5678/api/works/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+    }
+    // Rechargement dynamique de la page
+    let reponseWorks = await fetch('http://localhost:5678/api/works/');
+    let works = await reponseWorks.json();
+    genererWorks(works);
+    genererWorksModale(works);
+    
+    
+})
