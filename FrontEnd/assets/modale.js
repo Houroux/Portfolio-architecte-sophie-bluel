@@ -152,17 +152,14 @@ export function fonctionBoutonSupprimer () {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then((response) => {
+        .then(async (response) => {
             if (response.ok) {      
             // Rechargement dynamique de la page
-                const regenererWorks = async () => {
                     let reponseWorks = await fetch('http://localhost:5678/api/works/');
                     let works = await reponseWorks.json();
                     genererWorks(works);
                     genererWorksModale(works);
-                    }
-                regenererWorks();
-                fonctionBoutonSupprimer();
+                    fonctionBoutonSupprimer();
             }
             else {
                 alert('Erreur');
