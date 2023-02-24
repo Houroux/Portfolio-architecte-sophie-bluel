@@ -1,7 +1,7 @@
 const loginForm = document.querySelector('.login-form');
 const loginButton = document.querySelector('.button-connect');
 
-
+//Envoie des données du formulaire de connexion au serveur
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
@@ -10,16 +10,13 @@ loginButton.addEventListener('click', (e) => {
         email: email,
         password: password
     };
-
-    // console.log(logins);
-
     const promise01 = fetch('http://localhost:5678/api/users/login', {
-method: 'POST',
-headers: {
-    'Content-Type': 'application/json'
-},
-body: JSON.stringify(logins),
-    });
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(logins),
+            });
 
     const responseLogin = promise01.then((response) => {
         return response.json();

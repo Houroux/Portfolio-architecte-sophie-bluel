@@ -50,9 +50,10 @@ let works = await reponseWorks.json();
 
 // Ajout des photos dans la modale
 export function genererWorksModale(works){
+       //Récupération de l'élément de la modale où on va ajouter les works
+       const galleryModale = document.querySelector('.edit-work-container');
+       galleryModale.innerHTML = '';
     for (const work of works) {
-        //Récupération de l'élément de la modale où on va ajouter les works
-        const galleryModale = document.querySelector('.edit-work-container');
         //Création de la div qui va contenir le work
         const workModale = document.createElement('div');
         workModale.classList.add('edit-work');
@@ -104,23 +105,25 @@ export function genererWorksModale(works){
 };
 genererWorksModale(works);
 
-        
-
-
-
-
-
-
 // Ajout d'un event listener sur le bouton ajouter photo
 const boutonAjouterPhoto = document.querySelector('.bouton-ajouter-photo')
 boutonAjouterPhoto.addEventListener('click', () => {
-
     //Recuperation de la modale d'ajout de photo
     const modaleAjoutPhoto = document.querySelector('.modale-ajout-photo-container')
     //Fermeture de la modale principale
     document.querySelector('.modale-container').style.display = 'none'
     //Affichage de la modale d'ajout de photo
     modaleAjoutPhoto.style.display = 'flex'
+    //Remise à zéro du formulaire d'ajout de photo
+    document.getElementById('form-id').reset()
+    document.querySelector('.container-upload-photo').style.background = '#E8F1F7';
+    document.querySelector('.fa-image').style.display = 'inline-block';
+    document.querySelector('.label-photo').style.display = 'flex';
+    document.querySelector('.description-upload').style.display = 'block';
+    let image = document.getElementById('image');
+    if (image.files && image.files[0]) {
+        image.files[0] = null;
+    }
     //Recuperation du nouveau bouton de fermeture de la modale
     boutonFermerModale = document.querySelector('.bouton-fermer-modale')
     //Ajout d'un event listener sur le bouton fermer modale
@@ -136,9 +139,10 @@ boutonAjouterPhoto.addEventListener('click', () => {
 })})
 
 
-//Ajout focntionnalite bouton supprimer
-const boutonSupprimer = document.querySelectorAll('.container-trash')
-for (const bouton of boutonSupprimer) {
+//Ajout fonctionnalite bouton supprimer
+export function fonctionBoutonSupprimer () {
+    const boutonSupprimer = document.querySelectorAll('.container-trash')
+    boutonSupprimer.forEach(bouton => {
     bouton.addEventListener('click', async () => {
         const id = bouton.getAttribute('id')
         fetch(`http://localhost:5678/api/works/${id}`, {
@@ -148,23 +152,33 @@ for (const bouton of boutonSupprimer) {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then(response => response.json())
-        .then(console.log(response))
-        .catch(error => console.log(error))
-
-        // Rechargement dynamique de la page
-        let reponseWorks = await fetch('http://localhost:5678/api/works/');
-        let works = await reponseWorks.json();       
-        genererWorks(works);
-        genererWorksModale(works);
-    
+        .then((response) => {
+            if (response.ok) {      
+            // Rechargement dynamique de la page
+                const regenererWorks = async () => {
+                    let reponseWorks = await fetch('http://localhost:5678/api/works/');
+                    let works = await reponseWorks.json();
+                    genererWorks(works);
+                    genererWorksModale(works);
+                    }
+                regenererWorks();
+                fonctionBoutonSupprimer();
+            }
+            else {
+                alert('Erreur');
+            }
+          
+        })  
     })
+})
 }
-
+fonctionBoutonSupprimer();
 
 //Ajout fonctionnalite bouton tout supprimer 
  const boutonToutSupprimer = document.querySelector('.edit-supp')
 boutonToutSupprimer.addEventListener('click', async () => {
+    let reponseWorks = await fetch('http://localhost:5678/api/works/');
+    let works = await reponseWorks.json();
     for (const work of works) {
         let id = work.id
         fetch(`http://localhost:5678/api/works/${id}`, {
@@ -174,12 +188,13 @@ boutonToutSupprimer.addEventListener('click', async () => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
-    }
-    // Rechargement dynamique de la page
-    let reponseWorks = await fetch('http://localhost:5678/api/works/');
-    let works = await reponseWorks.json();
-    genererWorks(works);
-    genererWorksModale(works);
-    
-    
+    }    
+// Rechargement dynamique de la page
+    const regenererWorks = async () => {
+        let reponseWorks = await fetch('http://localhost:5678/api/works/');
+        let works = await reponseWorks.json();
+        genererWorks(works);
+        genererWorksModale(works);
+        }
+    regenererWorks();
 })

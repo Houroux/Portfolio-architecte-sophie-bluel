@@ -1,8 +1,8 @@
 import { genererWorks } from "./index.js";
 import { genererWorksModale } from "./modale.js";
+import { fonctionBoutonSupprimer } from "./modale.js";
 
 
-let form = document.getElementById('form-id');
 let image = document.getElementById('image');
 let title = document.getElementById('title');
 let category = document.getElementById('category');
@@ -42,6 +42,7 @@ image.addEventListener('change', () => {
 });
 
 
+// Fonction de recherche de l'id de la catégorie
 const rechercheIdCategory = (category) => {
     return fetch('http://localhost:5678/api/categories')
     .then(response => response.json())
@@ -56,8 +57,9 @@ const rechercheIdCategory = (category) => {
 }
 
 
+/// Envoi du formulaire
+submit.addEventListener('click', async (e) => {
 
-form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     let formData = new FormData();
@@ -70,29 +72,38 @@ form.addEventListener('submit', async (e) => {
 
     formData.append('category', categoryID);
 
-    fetch('http://localhost:5678/api/works', {
+    const response = fetch('http://localhost:5678/api/works', {
         method: 'POST',
         body: formData,
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         }
-
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(console.error);
-    if (reponse.status == 201) {      
+    .then((response) => {
+        if (response.status == 201) {      
         // Rechargement dynamique de la page
-        let reponseWorks = await fetch('http://localhost:5678/api/works/');
-        let works = await reponseWorks.json();
-        genererWorks(works);
-        genererWorksModale(works);
-    }
-    else {
-        alert('Erreur');
-    }
-   
-   
+            const regenererWorks = async () => {
+                let reponseWorks = await fetch('http://localhost:5678/api/works/');
+                let works = await reponseWorks.json();
+                genererWorks(works);
+                genererWorksModale(works);       
+                fonctionBoutonSupprimer();
+                }
+            regenererWorks();
+            //Remise à zéro du formulaire d'ajout de photo
+            document.getElementById('form-id').reset()
+            document.querySelector('.container-upload-photo').style.background = '#E8F1F7';
+            document.querySelector('.fa-image').style.display = 'inline-block';
+            document.querySelector('.label-photo').style.display = 'flex';
+            document.querySelector('.description-upload').style.display = 'block';
+            let image = document.getElementById('image');
+            if (image.files && image.files[0]) {
+                   image.files[0] = null;
+            }
+        }
+        else {
+            alert('Erreur');
+        }
+    })
 });
+
